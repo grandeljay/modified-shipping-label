@@ -1,0 +1,31 @@
+{
+    "name": "Shipping Label",
+    "archiveName": "grandeljay/shipping-label",
+    "sourceDir": "src",
+    "version": "auto",
+    "shortDescription": "Allows customers to upload their own shipping label in the checkout.",
+    "description": "Allows customers to upload their own shipping label in the checkout.",
+    "developer": "grandeljay",
+    "developerWebsite": "https://github.com/grandeljay",
+    "website": "https://github.com/grandeljay/modified-shipping-label",
+    "modifiedCompatibility": [
+        "2.0.7.2"
+    ],
+    "category": "shipping",
+    "price": "free",
+    "require": {
+        "composer/autoload": "^1.3.0",
+        "robinthehood/modified-std-module": "^0.9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Grandeljay\\ShippingLabel\\": "src-mmlc"
+        }
+    },
+    "php": {
+        "version": "^8.0.0"
+    },
+    "mmlc": {
+        "version": "^1.20.0"
+    }
+}
