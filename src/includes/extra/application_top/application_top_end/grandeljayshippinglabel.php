@@ -12,7 +12,15 @@ namespace Grandeljay\ShippingLabel;
 
 require_once DIR_FS_CATALOG . 'includes/extra/functions/rth_modified_std_module.php';
 
-if (rth_is_module_disabled(Constants::MODULE_NAME) || \grandeljayshippinglabel::class . '_shippinglabel' !== $_SESSION['shipping']['id']) {
+if (rth_is_module_disabled(Constants::MODULE_NAME)) {
+    return;
+}
+
+if (!isset($_SESSION['shipping']['id'])) {
+    return;
+}
+
+if (\grandeljayshippinglabel::class . '_shippinglabel' !== $_SESSION['shipping']['id']) {
     return;
 }
 
