@@ -14,6 +14,10 @@ if (rth_is_module_disabled(Constants::MODULE_NAME)) {
     return;
 }
 
+$language_file = DIR_FS_CATALOG . 'lang/' . $_SESSION['language'] . '/modules/shipping/grandeljayshippinglabel.php';
+
+require_once $language_file;
+
 $directory = dirname($_SESSION['grandeljay']['shipping-label']['label']['file_destination']);
 $filename  = $order->info['orders_id'] . '.pdf';
 $url       = str_replace(DIR_FS_CATALOG, HTTPS_SERVER . '/', $directory . '/' . $filename);
