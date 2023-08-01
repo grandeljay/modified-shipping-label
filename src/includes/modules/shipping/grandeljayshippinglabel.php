@@ -16,7 +16,7 @@ use RobinTheHood\ModifiedStdModule\Classes\StdModule;
 
 class grandeljayshippinglabel extends StdModule
 {
-    public const VERSION = '0.2.1';
+    public const VERSION = '0.2.2';
 
     /**
      * Keys to automatically add on __construct and to remove on remove.
