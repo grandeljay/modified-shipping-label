@@ -42,8 +42,6 @@ class grandeljayshippinglabel extends StdModule
         foreach ($this->autoKeys as $key) {
             $this->addKey($key);
         }
-
-        $this->quotes = $this->quote();
     }
 
     public function install()
@@ -111,6 +109,10 @@ class grandeljayshippinglabel extends StdModule
             'module'  => constant(Constants::MODULE_NAME . '_TEXT_TITLE'),
             'methods' => $methods,
         );
+
+        if (isset($quote['methods']) && count($quote['methods']) > 0) {
+            $this->quotes = $quote;
+        }
 
         return $quote;
     }
