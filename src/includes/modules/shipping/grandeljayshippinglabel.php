@@ -61,7 +61,13 @@ class grandeljayshippinglabel extends StdModule
         }
     }
 
-    public function quote(): array
+    /**
+     * Used by modified to show shipping costs. Will be ignored if the value is
+     * not an array.
+     *
+     * @var ?array
+     */
+    public function quote(): ?array
     {
         $upload_max_size         = ini_get('upload_max_filesize');
         $input_file_upload_label = sprintf(
