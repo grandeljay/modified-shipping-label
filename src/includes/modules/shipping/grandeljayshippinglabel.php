@@ -122,4 +122,15 @@ class grandeljayshippinglabel extends StdModule
 
         return $quote;
     }
+
+    /**
+     * Do not automatically select this method as the cheapest.
+     *
+     * @return bool
+     */
+    // phpcs:ignore PSR1.Methods.CamelCapsMethodName.NotCamelCaps
+    public function ignore_cheapest(): bool
+    {
+        return true;
+    }
 }
