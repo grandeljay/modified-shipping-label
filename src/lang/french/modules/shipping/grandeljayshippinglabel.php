@@ -23,6 +23,8 @@ $translations = array(
     'ALLOWED_DESC'           => '',
     'HANDLING_FEE_TITLE'     => 'Forfait de manutention',
     'HANDLING_FEE_DESC'      => 'Frais pour le prélèvement et l\'emballage de l\'envoi.',
+    'PICK_PACK_TITLE'        => 'Pick & Pack',
+    'PICK_PACK_DESC'         => 'Frais encourus pour la préparation et l\'emballage de la commande.',
 
     'TEXT_SHIPPING_LABEL'    => 'Étiquette d\'expédition',
 

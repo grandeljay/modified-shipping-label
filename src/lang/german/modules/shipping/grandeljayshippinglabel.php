@@ -23,6 +23,8 @@ $translations = array(
     'ALLOWED_DESC'           => '',
     'HANDLING_FEE_TITLE'     => 'Handling-Pauschale',
     'HANDLING_FEE_DESC'      => 'Gebühr für das Picken und Packen der Sendung.',
+    'PICK_PACK_TITLE'        => 'Pick & Pack',
+    'PICK_PACK_DESC'         => 'Kosten die beim zusammenstellen und verpacken der Bestellung entstehen.',
 
     'TEXT_SHIPPING_LABEL'    => 'Versandlabel',
 

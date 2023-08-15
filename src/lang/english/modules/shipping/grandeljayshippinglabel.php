@@ -23,6 +23,8 @@ $translations = array(
     'ALLOWED_DESC'           => '',
     'HANDLING_FEE_TITLE'     => 'Handling flat rate',
     'HANDLING_FEE_DESC'      => 'Fee for picking and packing the consignment.',
+    'PICK_PACK_TITLE'        => 'Pick & Pack',
+    'PICK_PACK_DESC'         => 'Costs incurred in assembling and packing the order.',
 
     'TEXT_SHIPPING_LABEL'    => 'Shipping label',
 

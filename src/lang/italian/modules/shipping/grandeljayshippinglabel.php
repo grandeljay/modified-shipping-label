@@ -23,6 +23,8 @@ $translations = array(
     'ALLOWED_DESC'           => '',
     'HANDLING_FEE_TITLE'     => 'Manipolazione a tariffa forfettaria',
     'HANDLING_FEE_DESC'      => 'Tassa per il prelievo e l\'imballaggio della spedizione.',
+    'PICK_PACK_TITLE'        => 'Pick & Pack',
+    'PICK_PACK_DESC'         => 'I costi sostenuti per l\'assemblaggio e l\'imballaggio dell\'ordine.',
 
     'TEXT_SHIPPING_LABEL'    => 'Etichetta di spedizione',
 

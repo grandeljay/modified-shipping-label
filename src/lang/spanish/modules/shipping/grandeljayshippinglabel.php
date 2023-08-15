@@ -23,6 +23,8 @@ $translations = array(
     'ALLOWED_DESC'           => '',
     'HANDLING_FEE_TITLE'     => 'Tarifa plana de manipulación',
     'HANDLING_FEE_DESC'      => 'Tasa por recoger y embalar el envío.',
+    'PICK_PACK_TITLE'        => 'Pick & Pack',
+    'PICK_PACK_DESC'         => 'Gastos de montaje y embalaje del pedido.',
 
     'TEXT_SHIPPING_LABEL'    => 'Etiqueta de envío',
 
