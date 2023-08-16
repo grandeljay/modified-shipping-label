@@ -21,6 +21,8 @@ $translations = array(
 
     'ALLOWED_TITLE'          => '',
     'ALLOWED_DESC'           => '',
+    'SORT_ORDER_TITLE'       => 'Sort order',
+    'SORT_ORDER_DESC'        => 'Determines the sorting in the Admin and Checkout. Lowest numbers are displayed first.',
     'HANDLING_FEE_TITLE'     => 'Handling flat rate',
     'HANDLING_FEE_DESC'      => 'Fee for picking and packing the consignment.',
     'PICK_PACK_TITLE'        => 'Pick & Pack',

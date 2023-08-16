@@ -54,6 +54,7 @@ class grandeljayshippinglabel extends StdModule
     {
         parent::__construct(Constants::MODULE_NAME);
 
+        $this->autoKeys[] = 'SORT_ORDER';
         $this->autoKeys[] = 'HANDLING_FEE';
         $this->autoKeys[] = 'PICK_PACK';
 
@@ -92,6 +93,7 @@ class grandeljayshippinglabel extends StdModule
         );
 
         $this->addConfiguration('ALLOWED', '', 6, 1);
+        $this->addConfiguration('SORT_ORDER', 5, 6, 1);
         $this->addConfiguration('HANDLING_FEE', 1.60, 6, 1);
         $this->addConfiguration('PICK_PACK', $pickPack, 6, 1, self::class . '::pickPack(');
     }

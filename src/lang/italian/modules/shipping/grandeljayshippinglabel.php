@@ -21,6 +21,8 @@ $translations = array(
 
     'ALLOWED_TITLE'          => '',
     'ALLOWED_DESC'           => '',
+    'SORT_ORDER_TITLE'       => 'Ordinamento',
+    'SORT_ORDER_DESC'        => 'Determina l\'ordinamento nell\'Admin e nel Checkout. I numeri più bassi vengono visualizzati per primi.',
     'HANDLING_FEE_TITLE'     => 'Manipolazione a tariffa forfettaria',
     'HANDLING_FEE_DESC'      => 'Tassa per il prelievo e l\'imballaggio della spedizione.',
     'PICK_PACK_TITLE'        => 'Pick & Pack',

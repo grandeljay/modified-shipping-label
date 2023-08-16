@@ -21,6 +21,8 @@ $translations = array(
 
     'ALLOWED_TITLE'          => '',
     'ALLOWED_DESC'           => '',
+    'SORT_ORDER_TITLE'       => 'Ordre de tri',
+    'SORT_ORDER_DESC'        => 'Détermine le tri dans Admin et Checkout. Les chiffres les plus bas sont affichés en premier.',
     'HANDLING_FEE_TITLE'     => 'Forfait de manutention',
     'HANDLING_FEE_DESC'      => 'Frais pour le prélèvement et l\'emballage de l\'envoi.',
     'PICK_PACK_TITLE'        => 'Pick & Pack',

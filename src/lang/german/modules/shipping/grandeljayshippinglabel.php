@@ -21,6 +21,8 @@ $translations = array(
 
     'ALLOWED_TITLE'          => '',
     'ALLOWED_DESC'           => '',
+    'SORT_ORDER_TITLE'       => 'Sortierreihenfolge',
+    'SORT_ORDER_DESC'        => 'Bestimmt die Sortierung im Admin und Checkout. Niedrigste Zahlen werden zuerst angezeigt.',
     'HANDLING_FEE_TITLE'     => 'Handling-Pauschale',
     'HANDLING_FEE_DESC'      => 'Gebühr für das Picken und Packen der Sendung.',
     'PICK_PACK_TITLE'        => 'Pick & Pack',
