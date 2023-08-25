@@ -31,6 +31,7 @@ $translations = array(
     'TEXT_SHIPPING_LABEL'    => 'Etiqueta de envío',
 
     'TEXT_TITLE'             => 'Envío con etiqueta de envío propia',
+    'TEXT_TITLE_WEIGHT'      => 'Envío con etiqueta de envío propia (%s kg)',
     'TEXT_DESCRIPTION_TITLE' => 'Cargue aquí su propia etiqueta de envío (máximo %s).',
     'TEXT_DESCRIPTION_DESC'  => 'Nota: La tarifa es un gasto fijo de manipulación para recoger y embalar su envío.',
     'TEXT_UPLOAD_BUTTON'     => 'Seleccionar archivo',

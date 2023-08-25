@@ -31,6 +31,7 @@ $translations = array(
     'TEXT_SHIPPING_LABEL'    => 'Versandlabel',
 
     'TEXT_TITLE'             => 'Versand mit eigenem Versandlabel',
+    'TEXT_TITLE_WEIGHT'      => 'Versand mit eigenem Versandlabel (%s kg)',
     'TEXT_DESCRIPTION_TITLE' => 'Laden Sie ihr eigenes Versandlabel hier hoch (maximal %s).',
     'TEXT_DESCRIPTION_DESC'  => 'Hinweis: Die Gebühr versteht sich als eine Handling-Pauschale für das Picken und Packen Ihrer Sendung.',
     'TEXT_UPLOAD_BUTTON'     => 'Datei wählen',

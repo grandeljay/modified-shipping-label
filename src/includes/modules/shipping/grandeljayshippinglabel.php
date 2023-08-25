@@ -115,7 +115,7 @@ class grandeljayshippinglabel extends StdModule
      */
     public function quote(): ?array
     {
-        global $shipping_weight;
+        global $total_weight;
 
         $upload_max_size         = ini_get('upload_max_filesize');
         $input_file_upload_label = sprintf(
@@ -168,7 +168,7 @@ class grandeljayshippinglabel extends StdModule
         );
 
         foreach ($pick_pack_entries as $entry) {
-            if ($shipping_weight <= $entry['weight']) {
+            if ($total_weight <= $entry['weight']) {
                 $method_shipping_label_costs += $entry['costs'];
 
                 break;
@@ -185,7 +185,10 @@ class grandeljayshippinglabel extends StdModule
         );
         $quote                 = array(
             'id'      => self::class,
-            'module'  => constant(Constants::MODULE_NAME . '_TEXT_TITLE'),
+            'module'  => sprintf(
+                constant(Constants::MODULE_NAME . '_TEXT_TITLE_WEIGHT'),
+                round($total_weight, 2)
+            ),
             'methods' => $methods,
         );
 

@@ -31,6 +31,7 @@ $translations = array(
     'TEXT_SHIPPING_LABEL'    => 'Étiquette d\'expédition',
 
     'TEXT_TITLE'             => 'Envoi avec votre propre étiquette d\'expédition',
+    'TEXT_TITLE_WEIGHT'      => 'Envoi avec votre propre étiquette d\'expédition (%s kg)',
     'TEXT_DESCRIPTION_TITLE' => 'Téléchargez votre propre étiquette d\'expédition ici (%s maximum).',
     'TEXT_DESCRIPTION_DESC'  => 'Remarque : les frais s\'entendent comme un forfait de manutention pour le picking et l\'emballage de votre envoi.',
     'TEXT_UPLOAD_BUTTON'     => 'Sélectionner un fichier',

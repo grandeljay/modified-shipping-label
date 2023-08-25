@@ -31,6 +31,7 @@ $translations = array(
     'TEXT_SHIPPING_LABEL'    => 'Etichetta di spedizione',
 
     'TEXT_TITLE'             => 'Spedizione con etichetta di spedizione propria',
+    'TEXT_TITLE_WEIGHT'      => 'Spedizione con etichetta di spedizione propria (%s kg)',
     'TEXT_DESCRIPTION_TITLE' => 'Carichi qui la sua etichetta di spedizione (massimo %s).',
     'TEXT_DESCRIPTION_DESC'  => 'Nota: la tariffa è un costo di gestione forfettario per il prelievo e l\'imballaggio della sua spedizione.',
     'TEXT_UPLOAD_BUTTON'     => 'Selezionare il file',

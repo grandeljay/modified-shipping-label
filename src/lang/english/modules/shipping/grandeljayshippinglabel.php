@@ -31,6 +31,7 @@ $translations = array(
     'TEXT_SHIPPING_LABEL'    => 'Shipping label',
 
     'TEXT_TITLE'             => 'Shipping with own shipping label',
+    'TEXT_TITLE_WEIGHT'      => 'Shipping with own shipping label (%s kg)',
     'TEXT_DESCRIPTION_TITLE' => 'Upload your own shipping label here (maximum %s).',
     'TEXT_DESCRIPTION_DESC'  => 'Note: The fee is a flat handling charge for picking and packing your shipment.',
     'TEXT_UPLOAD_BUTTON'     => 'Select file',
