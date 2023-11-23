@@ -10,7 +10,9 @@
 
 namespace Grandeljay\ShippingLabel;
 
-if (rth_is_module_disabled(Constants::MODULE_NAME)) {
+$shipping_method = $_SESSION['shipping']['id'] ?? '';
+
+if (rth_is_module_disabled(Constants::MODULE_NAME) || 'grandeljayshippinglabel' !== $shipping_method) {
     return;
 }
 
