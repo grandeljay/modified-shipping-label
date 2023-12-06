@@ -33,6 +33,13 @@ class grandeljayshippinglabel extends StdModule
      */
     public array $quotes = array();
 
+    /**
+     * Used to calculate the tax.
+     *
+     * @var int
+     */
+    public int $tax_class = 1;
+
     public static function pickPack(string $configuration_value, string $configuration_key): string
     {
         ob_start();
