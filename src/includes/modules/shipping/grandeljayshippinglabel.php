@@ -23,7 +23,7 @@ class grandeljayshippinglabel extends StdModule
      *
      * @var array
      */
-    private array $autoKeys = array();
+    private array $autoKeys = [];
 
     /**
      * Used by modified to determine the cheapest shipping method. Should
@@ -31,7 +31,7 @@ class grandeljayshippinglabel extends StdModule
      *
      * @var array
      */
-    public array $quotes = array();
+    public array $quotes = [];
 
     /**
      * Used to calculate the tax.
@@ -88,28 +88,28 @@ class grandeljayshippinglabel extends StdModule
         parent::install();
 
         $pickPack = json_encode(
-            array(
-                array(
+            [
+                [
                     'weight' => '1',
                     'costs'  => '1.3',
-                ),
-                array(
+                ],
+                [
                     'weight' => '5',
                     'costs'  => '1.6',
-                ),
-                array(
+                ],
+                [
                     'weight' => '10',
                     'costs'  => '2',
-                ),
-                array(
+                ],
+                [
                     'weight' => '20',
                     'costs'  => '2.6',
-                ),
-                array(
+                ],
+                [
                     'weight' => '60',
                     'costs'  => '3',
-                ),
-            )
+                ],
+            ]
         );
 
         $this->addConfiguration('ALLOWED', '', 6, 1);
@@ -195,22 +195,22 @@ class grandeljayshippinglabel extends StdModule
             }
         }
 
-        $method_shipping_label = array(
+        $method_shipping_label = [
             'id'    => 'shippinglabel',
             'title' => $title_html,
             'cost'  => $method_shipping_label_costs,
-        );
-        $methods               = array(
+        ];
+        $methods               = [
             $method_shipping_label,
-        );
-        $quote                 = array(
+        ];
+        $quote                 = [
             'id'      => self::class,
             'module'  => sprintf(
                 constant(Constants::MODULE_NAME . '_TEXT_TITLE_WEIGHT'),
                 round($total_weight, 2)
             ),
             'methods' => $methods,
-        );
+        ];
 
         if (isset($quote['methods']) && count($quote['methods']) > 0) {
             $this->quotes = $quote;
