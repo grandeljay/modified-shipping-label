@@ -15,11 +15,11 @@ if (rth_is_module_disabled(Constants::MODULE_NAME)) {
 }
 
 /** Only enqueue JavaScript when module settings are open */
-$grandeljayshippinglabel_admin_screen = array(
+$grandeljayshippinglabel_admin_screen = [
     'set'    => 'shipping',
     'module' => \grandeljayshippinglabel::class,
     'action' => 'edit',
-);
+];
 
 parse_str($_SERVER['QUERY_STRING'] ?? '', $query_string);
 
@@ -29,9 +29,9 @@ foreach ($grandeljayshippinglabel_admin_screen as $key => $value) {
     }
 }
 
-$file_name    = '/' . DIR_ADMIN . 'includes/javascript/grandeljayshippinglabel.js';
-$file_path    = DIR_FS_CATALOG .  $file_name;
+$file['name'] = '/' . DIR_ADMIN . 'includes/javascript/grandeljayshippinglabel.js';
+$file_path    = DIR_FS_CATALOG .  $file['name'];
 $file_version = hash_file('crc32c', $file_path);
-$file_url     = $file_name . '?v=' . $file_version;
+$file_url     = $file['name'] . '?v=' . $file_version;
 ?>
 <script type="text/javascript" src="<?= $file_url ?>" defer></script>
