@@ -29,9 +29,9 @@ foreach ($grandeljayshippinglabel_admin_screen as $key => $value) {
     }
 }
 
-$file['name'] = '/' . DIR_ADMIN . 'includes/javascript/grandeljayshippinglabel.js';
-$file_path    = DIR_FS_CATALOG .  $file['name'];
+$file_name    = '/' . DIR_ADMIN . 'includes/javascript/grandeljayshippinglabel.js';
+$file_path    = DIR_FS_CATALOG .  $file_name;
 $file_version = hash_file('crc32c', $file_path);
-$file_url     = $file['name'] . '?v=' . $file_version;
+$file_url     = $file_name . '?v=' . $file_version;
 ?>
 <script type="text/javascript" src="<?= $file_url ?>" defer></script>
