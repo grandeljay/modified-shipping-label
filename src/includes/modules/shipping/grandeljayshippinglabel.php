@@ -127,6 +127,32 @@ class grandeljayshippinglabel extends StdModule
         }
     }
 
+    private function getShippingWeight(): float
+    {
+        global $order;
+
+        $shipping_weight = 0;
+
+        foreach ($order->products as $product) {
+            $length = $product['length'] ?? 0;
+            $width  = $product['width']  ?? 0;
+            $height = $product['height'] ?? 0;
+            $weight = $product['weight'] ?? 0;
+
+            if ($length > 0 && $width > 0 && $height > 0) {
+                $volumetric_weight = ($length * $width * $height) / 5000;
+
+                if ($volumetric_weight > $weight) {
+                    $weight = $volumetric_weight;
+                }
+            }
+
+            $shipping_weight += $weight * $product['quantity'];
+        }
+
+        return $shipping_weight;
+    }
+
     /**
      * Used by modified to show shipping costs. Will be ignored if the value is
      * not an array.
@@ -135,8 +161,6 @@ class grandeljayshippinglabel extends StdModule
      */
     public function quote(): ?array
     {
-        global $total_weight;
-
         $upload_max_size         = ini_get('upload_max_filesize');
         $input_file_upload_label = sprintf(
             $this->getConfig('TEXT_DESCRIPTION_TITLE'),
@@ -147,6 +171,8 @@ class grandeljayshippinglabel extends StdModule
         if ('de' !== $language_current) {
             return null;
         }
+
+        $shipping_weight = $this->getShippingWeight();
 
         ob_start();
         ?>
@@ -188,7 +214,7 @@ class grandeljayshippinglabel extends StdModule
         );
 
         foreach ($pick_pack_entries as $entry) {
-            if ($total_weight <= $entry['weight']) {
+            if ($shipping_weight <= $entry['weight']) {
                 $method_shipping_label_costs += $entry['costs'];
 
                 break;
@@ -207,7 +233,7 @@ class grandeljayshippinglabel extends StdModule
             'id'      => self::class,
             'module'  => sprintf(
                 constant(Constants::MODULE_NAME . '_TEXT_TITLE_WEIGHT'),
-                round($total_weight, 2)
+                round($shipping_weight, 2)
             ),
             'methods' => $methods,
         ];
