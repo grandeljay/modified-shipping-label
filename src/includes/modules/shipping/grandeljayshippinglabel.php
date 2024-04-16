@@ -83,7 +83,7 @@ class grandeljayshippinglabel extends StdModule
         return self::UPDATE_NOTHING;
     }
 
-    public function install()
+    public function install(): void
     {
         parent::install();
 
@@ -131,7 +131,7 @@ class grandeljayshippinglabel extends StdModule
         );
     }
 
-    public function remove()
+    public function remove(): void
     {
         parent::remove();
 
