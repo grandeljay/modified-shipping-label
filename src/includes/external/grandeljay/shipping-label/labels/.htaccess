@@ -1,4 +1,4 @@
-<FilesMatch "^\d+\.pdf$">
+<FilesMatch "^((\d+)|(\d+\-[\da-f]+))\.pdf$">
     <IfModule !mod_authz_core.c>
         Allow from all
     </IfModule>

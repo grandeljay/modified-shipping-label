@@ -10,10 +10,34 @@
 
 namespace Grandeljay\ShippingLabel;
 
-$filepath_uploaded           = $_SESSION['grandeljay']['shipping-label']['label']['file_destination'];
-$filepath_uploaded_extension = pathinfo($filepath_uploaded, PATHINFO_EXTENSION);
-$filepath_uploaded_final     = Constants::DIRECTORY_LABELS . '/' . $last_order . '.' . $filepath_uploaded_extension;
+if (\rth_is_module_disabled(Constants::MODULE_NAME)) {
+    return;
+}
 
-rename($filepath_uploaded, $filepath_uploaded_final);
+foreach ($_SESSION['grandeljay']['shipping-label']['labels'] as $label) {
+    $label_filepath_current = $label['destination'];
+    $label_filepath_new     = \sprintf(
+        '%s/%d-%s.%s',
+        Constants::DIRECTORY_LABELS,
+        $last_order,
+        $label['hash'],
+        \pathinfo($label['destination'], \PATHINFO_EXTENSION)
+    );
 
-unset($_SESSION['grandeljay']['shipping-label']['label']);
+    $success = rename($label_filepath_current, $label_filepath_new);
+
+    if (!$success) {
+        continue;
+    }
+
+    \xtc_db_perform(
+        Constants::TABLE_LABELS,
+        [
+            'order_id' => $last_order,
+            'filename' => $label_filepath_new,
+            'filehash' => $label['hash'],
+        ]
+    );
+}
+
+unset($_SESSION['grandeljay']['shipping-label']['labels']);

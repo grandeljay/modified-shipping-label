@@ -116,6 +116,19 @@ class grandeljayshippinglabel extends StdModule
         $this->addConfiguration('SORT_ORDER', 5, 6, 1);
         $this->addConfiguration('HANDLING_FEE', 1.60, 6, 1);
         $this->addConfiguration('PICK_PACK', $pickPack, 6, 1, self::class . '::pickPack(');
+
+        xtc_db_query(
+            sprintf(
+                'CREATE TABLE IF NOT EXISTS `%s` (
+                    `order_id`   INT      UNSIGNED     NULL DEFAULT NULL,
+                    `filename`   TINYTEXT          NOT NULL,
+                    `filehash`   TINYTEXT          NOT NULL,
+                    `uploaded`   DATETIME          NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+                    INDEX `idx_order_id` (`order_id`)
+                )',
+                Constants::TABLE_LABELS
+            )
+        );
     }
 
     public function remove()
@@ -125,6 +138,13 @@ class grandeljayshippinglabel extends StdModule
         foreach ($this->autoKeys as $key) {
             $this->removeConfiguration($key);
         }
+
+        xtc_db_query(
+            sprintf(
+                'DROP TABLE IF EXISTS `%s`',
+                Constants::TABLE_LABELS
+            )
+        );
     }
 
     private function getShippingWeight(): float
@@ -182,18 +202,21 @@ class grandeljayshippinglabel extends StdModule
                 <?= $this->getConfig('TEXT_DESCRIPTION_DESC') ?><br />
 
                 <label>
-                    <input type="file" name="<?= self::class . '-shipping-label' ?>" accept="application/pdf" />
+                    <input type="file" name="<?= self::class . '-shipping-label' ?>[]" accept="application/pdf" multiple="true" />
 
-                    <?php if (isset($_SESSION['grandeljay']['shipping-label']['label'])) { ?>
+                    <?php if (isset($_SESSION['grandeljay']['shipping-label']['labels'])) { ?>
                         <span class="text-upload hide"><?= $this->getConfig('TEXT_UPLOAD_BUTTON') ?></span>
                         <span class="text-progress hide"><?= $this->getConfig('TEXT_UPLOAD_PROGRESS') ?></span>
                         <span class="text-success">
-                            <?= $_SESSION['grandeljay']['shipping-label']['label']['name'] ?>
+                            <?php foreach ($_SESSION['grandeljay']['shipping-label']['labels'] as $file) { ?>
+                                <?= $file['name'] ?><br>
+                            <?php } ?>
                         </span>
                     <?php } else { ?>
                         <span class="text-upload"><?= $this->getConfig('TEXT_UPLOAD_BUTTON') ?></span>
                         <span class="text-progress hide"><?= $this->getConfig('TEXT_UPLOAD_PROGRESS') ?></span>
                         <span class="text-success hide"><?= $this->getConfig('TEXT_UPLOAD_SUCCESS') ?></span>
+                        <span class="text-failure hide"><?= $this->getConfig('TEXT_UPLOAD_FAILURE') ?></span>
                     <?php } ?>
                 </label>
             </div>

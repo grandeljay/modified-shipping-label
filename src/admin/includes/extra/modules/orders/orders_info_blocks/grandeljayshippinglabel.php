@@ -14,11 +14,17 @@ if (rth_is_module_disabled(Constants::MODULE_NAME) || \grandeljayshippinglabel::
     return;
 }
 
-$label_relative = 'grandeljay/shipping-label/labels/' . $order->info['orders_id'] . '.pdf';
-$label_filepath = DIR_FS_EXTERNAL . $label_relative;
-$label_filename = pathinfo($label_filepath, PATHINFO_BASENAME);
-$label_href     = rtrim(HTTPS_SERVER, '/') . DIR_WS_EXTERNAL . $label_relative;
+$labels_query = \xtc_db_query(
+    sprintf(
+        'SELECT *
+           FROM `%s`
+          WHERE `order_id` = %d',
+        Constants::TABLE_LABELS,
+        $order->info['orders_id']
+    )
+);
 ?>
+
 <div class="heading">
     <?= constant(Constants::MODULE_NAME . '_TEXT_TITLE') ?>:
 </div>
@@ -33,7 +39,15 @@ $label_href     = rtrim(HTTPS_SERVER, '/') . DIR_WS_EXTERNAL . $label_relative;
         <tr>
             <td class="smallText">
                 <ul>
-                    <li><a href="<?= $label_href ?>"><?= $label_filename ?></a></li>
+                    <?php
+                    while ($label_data = \xtc_db_fetch_array($labels_query)) {
+                        $url = \str_replace(\DIR_FS_CATALOG, \HTTPS_SERVER . '/', $label_data['filename']);
+
+                        ?>
+                        <li><a href="<?= $url ?>"><?= \pathinfo($label_data['filename'], \PATHINFO_BASENAME) ?></a></li>
+                        <?php
+                    }
+                    ?>
                 </ul>
             </td>
         </tr>

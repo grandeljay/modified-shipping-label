@@ -31,18 +31,22 @@ $constant_shipping_text_title = Constants::MODULE_NAME . '_TEXT_TITLE';
 
 switch ($filename) {
     case FILENAME_CHECKOUT_PAYMENT:
-        if (!isset($_SESSION['grandeljay']['shipping-label']['label'])) {
+        if (!isset($_SESSION['grandeljay']['shipping-label']['labels'])) {
             unset($_SESSION['shipping']);
-
-            $messageStack->add('checkout_shipping', ERROR_CHECKOUT_SHIPPING_NO_METHOD);
+                    $messageStack->add('checkout_shipping', 'Shipping labels are missing');
         }
         break;
     case FILENAME_CHECKOUT_CONFIRMATION:
+        $files_count      = count($_SESSION['grandeljay']['shipping-label']['labels']);
+        $files_count_text = 1 === $files_count
+                          ? \constant(Constants::MODULE_NAME . '_TEXT_UPLOAD_COUNT_SINGULAR')
+                          : \constant(Constants::MODULE_NAME . '_TEXT_UPLOAD_COUNT_PLURAL');
+
         $_SESSION['shipping']['title'] = defined($constant_shipping_text_title)
                                        ? sprintf(
                                            '%s (%s)',
                                            constant($constant_shipping_text_title),
-                                           $_SESSION['grandeljay']['shipping-label']['label']['name']
+                                           \sprintf($files_count_text, $files_count)
                                        )
                                        : $constant_shipping_text_title;
         break;

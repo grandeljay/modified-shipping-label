@@ -20,10 +20,22 @@ $language_file = DIR_FS_CATALOG . 'lang/' . $_SESSION['language'] . '/modules/sh
 
 require_once $language_file;
 
-$filepath  = $_SESSION['grandeljay']['shipping-label']['label']['file_destination'];
-$directory = \dirname($filepath);
-$filename  = $order->info['orders_id'] . '.pdf';
-$url       = \str_replace(DIR_FS_CATALOG, HTTPS_SERVER . '/', $directory . '/' . $filename);
-$link      = '<a href="' . $url . '">' . \constant(Constants::MODULE_NAME . '_TEXT_TITLE') . '</a>';
+$links = '<ul>';
 
-$smarty->assign('SHIPPING_METHOD', $link);
+foreach ($_SESSION['grandeljay']['shipping-label']['labels'] as $file) {
+    $directory = \dirname($file['destination']);
+    $filename  = \sprintf(
+        '%d-%s.%s',
+        $order->info['orders_id'],
+        $file['hash'],
+        $file['extension']
+    );
+    $url       = \str_replace(DIR_FS_CATALOG, HTTPS_SERVER . '/', $directory . '/' . $filename);
+    $link      = '<a href="' . $url . '">' . $file['name'] . '</a>';
+
+    $links .= '<li>' . $link . '</li>';
+}
+
+$links .= '</ul>';
+
+$smarty->assign('SHIPPING_METHOD', $links);

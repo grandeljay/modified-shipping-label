@@ -19,25 +19,71 @@ if (rth_is_module_disabled(Constants::MODULE_NAME)) {
     return;
 }
 
-$file_key               = \grandeljayshippinglabel::class . '-shipping-label';
-$file                   = $_FILES[$file_key];
-$file_hash              = \hash_file('crc32c', $file['tmp_name']);
-$file_extension         = \strtolower(\pathinfo($file['name'], PATHINFO_EXTENSION));
-$file_destination       = Constants::DIRECTORY_LABELS . '/' . $file_hash . '.' . $file_extension;
-$file_upload_successful = \move_uploaded_file($file['tmp_name'], $file_destination);
+$file_key = \grandeljayshippinglabel::class . '-shipping-label';
 
-$response = [
-    'name' => $file['name'],
+/**
+ * Map upload information from `$_FILES` to a sane format.
+ */
+$files      = [];
+$files_keys = [
+    'name',
+    'full_path',
+    'type',
+    'tmp_name',
+    'error',
+    'size',
 ];
 
-if (!$file_upload_successful) {
-    http_response_code(500);
-    $response['error'] = 'File upload failed.';
+foreach ($files_keys as $files_key) {
+    foreach ($_FILES[$file_key][$files_key] as $key => $value) {
+        $files[$key][$files_key] = $value;
+    }
 }
 
-$_SESSION['grandeljay']['shipping-label']['label'] = [
-    'file_destination' => $file_destination,
-    'name'             => $file['name'],
+/**
+ * Add file hash
+ */
+$files = \array_map(
+    function (array $file) {
+        $file['hash'] = \hash_file('crc32c', $file['tmp_name']);
+
+        return $file;
+    },
+    $files
+);
+
+/**
+ * Add file extension and destination
+ */
+$files = \array_map(
+    function (array $file) {
+        $file['extension']   = \strtolower(\pathinfo($file['name'], PATHINFO_EXTENSION));
+        $file['destination'] = Constants::DIRECTORY_LABELS . '/' . $file['hash'] . '.' . $file['extension'];
+
+        return $file;
+    },
+    $files
+);
+
+/**
+ * Move file
+ */
+$files = \array_map(
+    function (array $file) {
+        $file['upload_successful'] = \move_uploaded_file($file['tmp_name'], $file['destination']);
+
+        return $file;
+    },
+    $files
+);
+
+$_SESSION['grandeljay']['shipping-label']['labels'] = $files;
+
+/**
+ * Return results
+ */
+$response = [
+    'labels' => $files,
 ];
 
 header('Content-Type: application/json');
