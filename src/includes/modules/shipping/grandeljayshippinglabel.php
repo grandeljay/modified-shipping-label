@@ -186,13 +186,7 @@ class grandeljayshippinglabel extends StdModule
             $this->getConfig('TEXT_DESCRIPTION_TITLE'),
             $upload_max_size
         );
-        $language_current        = $_SESSION['language_code'] ?? 'de';
-
-        if ('de' !== $language_current) {
-            return null;
-        }
-
-        $shipping_weight = $this->getShippingWeight();
+        $shipping_weight         = $this->getShippingWeight();
 
         ob_start();
         ?>
